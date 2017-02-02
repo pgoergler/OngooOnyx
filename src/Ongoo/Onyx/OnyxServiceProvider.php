@@ -14,10 +14,6 @@ class OnyxServiceProvider implements \Silex\ServiceProviderInterface
 
     public function boot(\Silex\Application $app)
     {
-        /*$app['resolver'] = $app->extend('resolver', function ($resolver, $app)
-        {
-            return new \Ongoo\Controllers\ControllerResolver($app, $resolver, new \Ongoo\Controllers\CallbackResolver($app));
-        });*/
     }
 
     public function register(\Silex\Application $app)
