@@ -1,4 +1,4 @@
 OngooUtils
 ==========
 
-Set of helpful functions for Ongoo Framework
+Set of helpful functions for Silex

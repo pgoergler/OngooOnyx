@@ -15,7 +15,7 @@ function client_id()
 function me()
 {
     $me = whoami();
-    return $me ? $me->getLogin() : \client_id();
+    return $me ? $me->getLogin() : client_id();
 }
 
 function whoami()

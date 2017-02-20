@@ -69,7 +69,6 @@ abstract class Task extends \Symfony\Component\Console\Command\Command
         $root = $app['logger.factory']->get('cli');
         $root->set('app', $this->getStrName());
         $app['logger.factory']->add($root, 'root');
-        $app['logger'] = $root;
 
         \Ongoo\Onyx\Configuration::getInstance()->set('application', $app);
         $this->app = $app;
