@@ -208,4 +208,3 @@ class OnyxServiceProvider implements \Silex\ServiceProviderInterface
     }
 
 }
-require_once('Session/functions.php');
