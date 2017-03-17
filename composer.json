@@ -15,7 +15,7 @@
             "Ongoo\\Onyx": "src"
         },
         "files": [
-            "src/Session/functions.php"
+            "src/Ongoo/Onyx/Session/functions.php"
         ]
     }
 }
