@@ -25,11 +25,6 @@ abstract class Task extends \Symfony\Component\Console\Command\Command
         return str_replace(':', '_', $this->getName());
     }
 
-    public function &getApplication()
-    {
-        return $this->app;
-    }
-
     protected function configure()
     {
         $this->addOption('env', null, \Symfony\Component\Console\Input\InputOption::VALUE_REQUIRED, 'Task environment', 'prod');
@@ -55,7 +50,7 @@ abstract class Task extends \Symfony\Component\Console\Command\Command
     protected function bootstrap(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output)
     {
         $this->initialize($input, $output);
-        $app = $this->getApplication();
+        $app = $this->app;
         include $app['dir_bootstrap'] . '/bootstrap_cli.php';
         $this->beforeBoot($input, $output);
         $app->boot();
