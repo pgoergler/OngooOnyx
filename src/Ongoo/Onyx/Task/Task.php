@@ -114,5 +114,15 @@ abstract class Task extends \Symfony\Component\Console\Command\Command
         }
     }
 
+    public function getInputInterface()
+    {
+        return $this->input;
+    }
+    
+    public function getOutputInterface()
+    {
+        return $this->output;
+    }
+    
     abstract protected function process(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output);
 }
