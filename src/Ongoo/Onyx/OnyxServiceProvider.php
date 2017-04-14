@@ -91,7 +91,7 @@ class OnyxServiceProvider implements \Silex\ServiceProviderInterface
             });
         }
 
-        if (!$app->OffsetExists('request.abort'))
+        if (!$app->OffsetExists('request.abort_if'))
         {
             $app['request.abort_if'] = $app->protect(function($condition, $code, $message) use (&$app)
             {
