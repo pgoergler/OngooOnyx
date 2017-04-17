@@ -93,7 +93,7 @@ class OnyxServiceProvider implements \Silex\ServiceProviderInterface
 
         if (!$app->OffsetExists('request.abort_if'))
         {
-            $app['request.abort_if'] = $app->protect(function($condition, $code, $message) use (&$app)
+            $app['request.abort_if'] = $app->protect(function($condition, $code, $message = "") use (&$app)
             {
                 if ($condition)
                 {
@@ -105,7 +105,7 @@ class OnyxServiceProvider implements \Silex\ServiceProviderInterface
 
         if (!$app->OffsetExists('request.abort_unless'))
         {
-            $app['request.abort_unless'] = $app->protect(function($condition, $code, $message = null) use (&$app)
+            $app['request.abort_unless'] = $app->protect(function($condition, $code, $message = "") use (&$app)
             {
                 if (!$message)
                 {
