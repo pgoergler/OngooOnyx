@@ -27,6 +27,11 @@ class OptionalObject
         return $this;
     }
     
+    public function getObject()
+    {
+        return $object;
+    }
+    
     public function __call($methodName, $args) {
         if( is_null($this->object) )
         {
