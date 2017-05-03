@@ -29,7 +29,7 @@ class OptionalObject
     
     public function getObject()
     {
-        return $object;
+        return $this->object;
     }
     
     public function __call($methodName, $args) {
