@@ -97,7 +97,7 @@ class OnyxServiceProvider implements \Silex\ServiceProviderInterface
             {
                 if ($condition)
                 {
-                    $app['logger']->error("aborting due to {0} {1}", array($code, $message));
+                    $app['logger']->debug("aborting due to {0} {1}", array($code, $message));
                     $app->abort($code, $message);
                 }
             });
