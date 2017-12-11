@@ -7,15 +7,15 @@ namespace Ongoo\Onyx\Providers;
  *
  * @author paul
  */
-class OnyxTwigServiceProvider implements \Silex\ServiceProviderInterface
+class OnyxTwigServiceProvider implements \Pimple\ServiceProviderInterface
 {
 
-    public function boot(\Silex\Application $app)
+    public function boot(\Pimple\Container $app)
     {
         
     }
 
-    public function register(\Silex\Application $app)
+    public function register(\Pimple\Container $app)
     {
         if (!$app->offsetExists('onyx.twig.load'))
         {

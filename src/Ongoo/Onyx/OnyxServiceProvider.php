@@ -9,14 +9,14 @@ use Symfony\Component\HttpFoundation\Request,
  *
  * @author paul
  */
-class OnyxServiceProvider implements \Silex\ServiceProviderInterface
+class OnyxServiceProvider implements \Pimple\ServiceProviderInterface
 {
 
-    public function boot(\Silex\Application $app)
+    public function boot(\Pimple\Container $app)
     {
     }
 
-    public function register(\Silex\Application $app)
+    public function register(\Pimple\Container $app)
     {
         if (!$app->offsetExists('onyx.services'))
         {
@@ -25,7 +25,7 @@ class OnyxServiceProvider implements \Silex\ServiceProviderInterface
 
         if (!$app->offsetExists('service.register'))
         {
-            $app['service.register'] = $app->protect(function(\Silex\ServiceProviderInterface $service, array $values = array()) use(&$app)
+            $app['service.register'] = $app->protect(function(\Pimple\ServiceProviderInterface $service, array $values = array()) use(&$app)
             {
                 $class = \get_class($service);
                 $bundles = $app['onyx.services'];
