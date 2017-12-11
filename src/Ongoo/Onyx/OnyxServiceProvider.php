@@ -46,10 +46,10 @@ class OnyxServiceProvider implements \Silex\ServiceProviderInterface
         $globalConfig = \Ongoo\Utils\ArrayUtils::merge(include(__CONFIG_DIR . '/config.php'), $app['application.mode']);
         $loggers = \Ongoo\Utils\ArrayUtils::merge(include(__CONFIG_DIR . '/loggers.php'), $app['application.mode']);
         
-        $app['configuration'] = $app->share(function()
+        $app['configuration'] = function()
         {
             return \Ongoo\Onyx\Configuration::getInstance();
-        });
+        };
 
         $app['configuration']->append(array('Databases' => $databases));
         $app['configuration']->append(array('Loggers' => $loggers), true);

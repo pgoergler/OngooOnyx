@@ -10,6 +10,8 @@ namespace Ongoo\Onyx\Task;
 abstract class SingletonTask extends Task
 {
 
+    use \Symfony\Component\Console\Command\LockableTrait;
+    
     protected $lockFile = null;
 
     protected function configure()
@@ -17,11 +19,6 @@ abstract class SingletonTask extends Task
         parent::configure();
         $this->addOption('pid-file', null, \Symfony\Component\Console\Input\InputOption::VALUE_REQUIRED, 'PID file to exclude concurent run', null);
         $this->addOption('logger', null, \Symfony\Component\Console\Input\InputOption::VALUE_REQUIRED, 'Logger name to use', 'cli');
-    }
-
-    public function signalUsr1($signo)
-    {
-
     }
 
     protected function onStart(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output)
@@ -35,30 +32,17 @@ abstract class SingletonTask extends Task
         $this->app['logger.factory']->add($root, 'root');
         $this->app['logger'] = $root;
 
-        declare( ticks = 1);
-        pcntl_signal(SIGUSR1, array(&$this, 'signalUsr1'));
-
-        $this->lockFile = $input->getOption('pid-file');
-        if (!$this->lockFile)
+        if (!$this->lock())
         {
-            $this->lockFile = '/tmp/' . $this->getStrName() . '.pid';
+            $output->writeln('<error>The command is already running in another process.</error>');
+            return 0;
         }
-
-        if (file_exists($this->lockFile))
-        {
-            $pid = \trim(file_get_contents($this->lockFile));
-            if (posix_kill(intval($pid), SIGUSR1))
-            {
-                throw new \RuntimeException($this->getName() . " already started pid [$pid] in : " . $this->lockFile);
-            }
-        }
-        file_put_contents($this->lockFile, getmypid());
     }
 
     protected function onFinish()
     {
-        unlink($this->lockFile);
         parent::onFinish();
+        $this->release();
     }
 
 }

@@ -25,7 +25,7 @@ function whoami()
     {
         $c['whoami'] = $c->protect(function() use (&$c)
         {
-            if ($c->OffsetExists('session') && $c['session'] instanceof \Quartz\QuartzGuard\Session && $c['session']->getGuardUser())
+            if ($c->OffsetExists('session') && class_exists('\Quartz\QuartzGuard\Session') && $c['session'] instanceof \Quartz\QuartzGuard\Session && $c['session']->getGuardUser())
             {
                 if (method_exists($c['session'], 'getSecureUser'))
                 {

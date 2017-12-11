@@ -32,7 +32,7 @@ class WebController
      */
     public function getRequest()
     {
-        return $this->app['request'];
+        return $app['request_stack']->getCurrentRequest();
     }
 
     /**

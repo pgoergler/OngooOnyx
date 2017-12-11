@@ -7,8 +7,11 @@
     "license": "MIT",
     "authors": [{"name": "Paul GOERGLER", "email": "pgoergler@gmail.com", "homepage": "http://soft.wayr.fr"}],
     "require": { 
-        "php": ">=5.6.0",
-        "ongoo/ongoo-utils": "dev-master"
+        "silex/silex": "2.*",
+        "ongoo/ongoo-utils": "~1.*",
+        "symfony/console": "3.*",
+        "symfony/http-foundation": "3.*",
+        "php": ">=7.1"
     },
     "autoload": {
         "psr-0": {
